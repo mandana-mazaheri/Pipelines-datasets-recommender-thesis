@@ -1,0 +1,44 @@
+\section{Implementation}
+
+We first created a standalone prototype
+simulator to evaluate the accuracy and correctness of our
+model in a simple scenario before integrating it in the more complex
+\wrench framework.
+The prototype uses the following basic storage model for
+both memory and disk:
+\begin{align*}
+    & t_{r} = D / b_r \\
+    & t_{w} = D / b_w\
+\end{align*}
+
+where:
+\begin{itemize}
+    \item $t_{r}$ is the data read time
+    \item $t_{w}$ is the data write time
+    \item $D$ is the amount of data to read or write
+    \item $b_r$ is the read bandwidth of the device
+    \item $b_w$ is the write bandwidth of the device
+\end{itemize}
+
+This prototype does not simulate  bandwidth sharing and thus does not support
+concurrency: it is limited to single-threaded applications running on systems
+with a single-core CPU. We used this prototype for a first validation of our simulation
+model against a real sequential application running on a real system.
+The Python 3.7 source code is available at
+\url{https://github.com/big-data-lab-team/paper-io-simulation/tree/master/exp/pysim}.
+
+We also implemented our model as part of \wrench, enhancing its
+internal implementation and APIs with a page cache abstraction,
+and allowing users to activate the feature via a command-line
+argument. We used SimGrid's locking mechanism to handle
+concurrent accesses to page cache LRU lists by the two Memory
+Manager threads. For the experiments, we used
+\wrench 1.6 at commit
+\href{https://github.com/wrench-project/wrench/tree/67185374330d2c4bf274fce222c937e838df5b03}{6718537433},
+which uses \simgrid 3.25, available at
+\url{https://framagit.org/simgrid/simgrid}. Our implementation
+is now part of \wrench's master branch and will be available to
+users with the upcoming 1.8 release. \wrench provides a full \simgrid-based simulation 
+environment that supports, among other features, concurrent accesses to storage devices, 
+applications distributed on multiple hosts, network transfers, 
+and multi-threading. 

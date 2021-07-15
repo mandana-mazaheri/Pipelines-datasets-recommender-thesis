@@ -1,0 +1,95 @@
+\section{I/O Controller}
+
+As mentioned previously, our model reads and writes file chunks in a
+round-robin fashion. To read a file chunk, simulated applications send
+chunk read requests to the I/O Controller which processes them using
+Algorithm~\ref{alg:read}. First, we calculate the amount of uncached
+data that needs to be read from disk, and the remaining amount is read
+from cache (line 7-8). The amount of memory required to read the chunk
+is calculated, corresponding to a copy of the chunk in anonymous memory
+and a copy of the chunk in cache (line 9).
+If there is not enough available memory, the Memory Manager is called
+to flush dirty data (line 10). If necessary, flushing is complemented by
+eviction (line 11). Note that, when called with negative arguments, functions
+\texttt{flush} and \texttt{evict} simply return and do not do anything. 
+Then,if the block requires uncached data, the memory manager is called 
+to read data from disk and to add this data to cache (line 14).
+If cached data needs to be read, the Memory Manager is called to simulate
+a cache read  and update the corresponding data blocks accordingly (line 17).
+Finally, the memory manager is called to deallocate the amount of anonymous 
+memory used by the application (line 19).
+
+\begin{algorithm}[H]
+\caption{File chunk read simulation in I/O Controller}
+\label{alg:read}
+    \small
+    \begin{algorithmic}[1]
+        \Input
+            \Desc{cs}{chunk size}
+            \Desc{fn}{file name}
+            \Desc{fs}{file size (assumed to fit in memory)}
+            \Desc{mm}{MemoryManager object}
+            \Desc{sm}{storage simulation model}
+           \EndInput
+           \State disk\_read = min(cs, fs - mm.cached(fn)) \Comment{To be read from disk}
+           \State cache\_read = cs - disk\_read \Comment{To be read from cache}
+           \State required\_mem = cs + disk\_read
+           \State mm.flush(required\_mem - mm.free\_mem - mm.evictable)
+           \State mm.evict(required\_mem - mm.free\_mem)
+           \If {disk\_read $>$ 0}  \Comment{Read uncached data}
+           \State sm.read(disk\_read)
+           \State mm.add\_to\_cache(disk\_read, fn)
+           \EndIf
+           \If {cache\_read $>$ 0} \Comment{Read cached}
+           \State mm.cache\_read(cache\_read)
+        \EndIf
+        \State mm.use\_anonymous\_mem(cs)
+    \end{algorithmic}
+\end{algorithm}
+
+Algorithm~\ref{alg:write} describes our simulation of chunk writes in
+the I/O Controller.
+% Data is written to cache until the amount of dirty data in the cache
+% exceeds the dirty ratio times the amount of available memory. Data is then written to disk.
+Our algorithm initially checks the  amount of dirty data that
+can be written given the dirty ratio (line 5).
+If this amount is greater than 0, the Memory Manager is requested to evict
+data from cache if necessary (line 7).
+After eviction, the amount of data that can be written to
+page cache is calculated (line 8), and a cache write is simulated (line 9).
+If the dirty threshold is reached and there is still data to write,
+the remaining data is written to cache in a loop
+where we repeatedly flush and evict from the cache (line 12-18).
+
+\begin{algorithm}[H]
+\caption{File chunk write simulation in I/O Controller}
+\label{alg:write}
+    \small
+    \begin{algorithmic}[1]
+        \Input
+            \Desc{cs}{chunk size}
+            \Desc{fn}{file name}
+            \Desc{mm}{MemoryManager object}
+           \EndInput
+        \State remain\_dirty = dirty\_ratio * mm.avail\_mem - mm.dirty
+        \If {remain\_dirty $>$ 0} \Comment{Write to memory}
+            \State mm.evict(min(cs, remain\_dirty) - mm.free\_mem)
+            \State mem\_amt = min(cs, mm.free\_mem)
+            \State mm.write\_to\_cache( mem\_amt, fn)
+        \EndIf
+        \State remaining = cs - mem\_amt
+        \While {remaining $>$ 0}  \Comment{Flush to disk, then write to cache}
+            \State mm.flush(cs - mem\_amt)
+            \State mm.evict(cs - mem\_amt  - mm.free\_mem)
+            \State to\_cache = min(remaining, mm.free\_mem)
+            \State mm.write\_to\_cache(to\_cache, fn)
+            \State remaining = remaining - to\_cache
+        \EndWhile
+
+    \end{algorithmic}
+\end{algorithm}
+
+The above model describes page cache in writeback
+mode. Our model also includes a write function in writethrough mode,
+which simply simulates a disk write with the amount of data passed in,
+then evicts cache if needed and adds the written data to the cache.

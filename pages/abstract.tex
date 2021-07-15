@@ -1,0 +1,41 @@
+\begin{abstract}
+
+The emergence of Big Data in recent years has led to a growing need 
+in data processing and an increasing number of data-intensive applications.
+Processing and storage of massive amounts of data  
+require large-scale solutions and thus must data-intensive applications be 
+executed on infrastructures such as cloud or High Performance 
+Computing (HPC) clusters.
+Although there are advancements of hardware/software stack that enable 
+larger computing platforms, some relevant challenges remain in 
+resource management, performance, scheduling, scalability, etc. 
+As a result, there is an increasing demand for optimizing and quantifying 
+performance when executing data-intensive applications on those platforms.
+While infrastructures with sufficient computing power and storage capacity 
+are available, the I/O performance on disks remains a bottleneck. 
+To tackle this problem, apart from hardware improvements, 
+the Linux page cache is an efficient architectural approach to reduce I/O 
+overheads, but few experimental studies of its interactions with Big Data 
+applications exist, partly due to limitations of real-world experiments. 
+Simulation is a popular approach to address these issues, however, 
+existing simulation frameworks do not simulate page caching fully, 
+or even at all.  
+As a result, simulation-based performance studies of data-intensive 
+applications lead to inaccurate results.
+
+This thesis proposes an I/O simulation model that captures 
+the key features of the Linux page cache. 
+We have implemented this model as part of the \wrench workflow 
+simulation framework, which itself builds on the popular \simgrid 
+distributed systems simulation framework. 
+Our model and its implementation enable the simulation of both 
+single-threaded and multithreaded applications, and of both writeback 
+and writethrough caches for local or network-based filesystems. 
+We evaluate the accuracy of our model in different conditions, 
+including sequential and concurrent applications, as well as local and 
+remote I/Os. 
+The results show that our page cache model reduces the simulation error 
+by up to an order of magnitude when compared to state-of-the-art, 
+cacheless simulations.
+
+\end{abstract}

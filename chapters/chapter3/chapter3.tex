@@ -1,0 +1,32 @@
+\chapter{Page cache simulation model}
+\label{method}
+
+This chapter describes our page cache simulation model and its implementation 
+in the WRENCH framework. 
+We separate our simulation model in two components, the I/O
+Controller and the Memory Manager, which together simulate
+file reads and writes (Figure~\ref{fig:interaction}).
+To read or write a file chunk, a simulated application sends a
+request to the I/O Controller. The I/O Controller interacts as needed with
+the Memory Manager to free memory through flushing or eviction,
+and to read or write cached data. The Memory Manager
+implements these operations, simulates periodical flushing
+and eviction, and reads or writes to disk when necessary.
+In case the writethrough strategy is used, the I/O Controller directly writes to disk, 
+cache is flushed if needed and written data is added to page cache.
+
+\begin{figure}
+       \centering
+       \includegraphics[width=0.7\columnwidth]{figures/interaction.pdf}
+       \captionof{figure}{Overview of the page cache simulator.
+       Applications send file read or write requests to the
+       I/O Controller that orchestrates flushing, eviction, cache
+       and disk accesses with the Memory Manager. Concurrent accesses to storage
+       devices (memory and disk) are simulated using existing models.}
+       \label{fig:interaction}
+\end{figure}
+
+\input{chapters/chapter3/subsec1}
+\input{subsec2}
+\input{chapters/chapter3/subsec3}
+
