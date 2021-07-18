@@ -1,205 +1,25 @@
 \chapter{Introduction}
 \label{introduction}
 
-\section{Data-intensive applications and HPC}
+In this chapter we explain what Open Science is and how it can be helpful for researchers and scientists in section 1.1 Then in section 1.2 we will focus on our thesis contributions and organizations in 1.3 and 1.4.
 
-In the last decades, information technology has been significantly changing the 
-world we are living in. 
-Thanks to both software and hardware advancements, application development 
-and operational costs have become more reasonable. 
-As a result, data-intensive applications have been widely used in various fields 
-by companies, organizations, and individuals. 
-Simultaneously, those applications have been 
-collecting massive amounts of data generated at an increasing speed.
-In addition, the last decade witnessed the rise of Big Data and the Internet of Things (IoT) with the rapid 
-development in mobile devices, wearable devices, smart appliances, 
-and connectivity technologies. Data has increasingly been collected from 
-these sources and transferred through network everyday. 
-The ever-increasing number and the scale of open-data and data sharing initiatives 
-have resulted in the evolution in Big Data and data-intensive applications, 
-which have been increasingly playing an important role in many fields such as 
-science, medical, military, finance, commerce, etc.
 
-Big Data is usually defined with ``three Vs'' corresponding to \textit{volume}, 
-\textit{velocity} and \textit{variety} ~\cite{de2016formal}.  
-Regarding \textit{volume}, the vast amounts of data require scalable and distributed 
-approaches for storage solutions as well as querying information and insights.  
-\textit{Velocity} emphasizes on the speed at which data is generated from large data 
-streams. Real-time analytics of streaming data requires immediate responses 
-from the data ingested by systems.
-\textit{Variety} refers to the diversity of data types including both structured and 
-unstructured data such as text, audio, images, and videos from various data sources.
-This data diversity requires not only elastic storage, transfer, processing but also 
-compute power to obtain deeper and valuable insights.  
-Due to the above challenges in handling the sheer size of the data, data-intensive 
-applications must be executed on large-scale infrastructures such as High Performance 
-Computing (HPC) clusters or the cloud, which provides a large-scale solution 
-and parallelism at micro as well as macro level to boost data 
-processing~\cite{philipchen2014}.
+\section{Open Science}
 
-Data-intensive applications consist of complex long tasks and workflows 
-with a significant amount of data. 
-Performance improvements can reduce the execution time by hours or even days.
-It is thus crucial to quantify and optimize the performance of these applications 
-on HPC platforms. 
-However, HPC systems have heterogeneous and complex architectures since they 
-are built by and for different organizations, used for specific purposes, thus must be 
-optimized in different ways. 
-The goals of optimization of these platforms include determining which type of 
-hardware/software stacks are best suited to different application classes, 
-as well as understanding the limitations of current algorithms, 
-designs and technologies. 
-There have been different approaches to measure the performance 
-of platforms through metrics such as execution time, 
-resources consumption, power consumption, etc. 
+Open science is a collection of actions designed to make scientific processes more transparent and results more accessible. Its goal is to build a more replicable and robust science~\cite{spellman_gilbert_corker_2017}. 
+Many journals and funding agencies now encourage, require, or reward some open science practices, including pre-registration, providing full materials, posting data, distinguishing between exploratory and confirmatory analyses, and running replication studies. Individuals can
+practice and promote open science in their many roles as researchers, authors, reviewers, editors, teachers.
 
-\section{Performance quantification}
+In the world of neuroscience a lot of attempts have been
+made to simplify reproducible research, specifically in neuroimaging,
+and functional Magnetic Resonance Imaging (fMRI)~\cite{Schöttner_2020}. 
 
-Quantifying the performance of HPC platforms requires running experiments on those platforms. 
-There are two common approaches to conduct experiments on HPC platforms:
-running real experiments on real platforms, and using simulation tools. 
-In the first approach, real-world tasks, applications, workflows, or pipelines are executed 
-directly on a real platform and the information about the performance of the system 
-is recorded for later analysis. 
-This method can guarantee that the results are realistic since it uses measurements 
-obtained from real systems.
-Unfortunately, performance studies relying on real-world experiments on 
-compute platforms face many difficulties.
-The first challenge is that platforms are normally shared among users, and therefore subject to dynamic, uncontrolled workloads which
- hinder the reproducibility 
-of experiment results.
-The next difficulty is related to the labor-intensive experimental setups and 
-time-consuming applications, since experiments must be re-executed 
-multiple times with multiple settings. 
-Moreover, because real platforms are not built for experimental purposes,
-users may not have the freedom to choose platform architectures, software, and 
-system configurations since some settings may not be permitted and the 
-operational costs of the platforms are usually high. 
-These shortcomings preclude the exploration of hypothetical scenarios.
+\section{Our approach}
 
-Simulations address these concerns by providing simulation models and 
-abstractions for the performance of computer hardware, such as CPU, 
-network, and storage. 
-Simulation models describe the interactions between simulated applications 
-and simulated platforms by evolving application activities (such as computation, 
-data transfer) which consume simulated resources (CPU, network, storage) 
-throughout simulated application run time~\cite{casanova2014simgrid}. 
-As a result, simulations provide a cost-effective, fast, easy, and reproducible 
-way to evaluate application performance on arbitrary platform configurations. 
-It thus comes as no surprise that a large number of simulation frameworks 
-have been developed and used for research and development
-~\cite{ optorsim, gridsim, groudsim, cloudsim, nunez2012simcan,
-nunez2012icancloud, mdcsim, dissect_cf, cloudnetsimplusplus, 
-fognetsimplusplus, casanova2014simgrid, ROSS, casanova2020fgcs}. 
+expanded intro:
+Specific to our problem! (after one page)
 
-\section{Page cache and simulation}
 
-Due to hardware limitations, the performance of platforms can be hampered 
-by bottlenecks including data transfer through network links, accessing data 
-on disks, etc. 
-When it comes to disk I/O, bottlenecks originate in limited 
-disk read and write bandwidths, seek time involved in disk accesses, 
-and shared bandwidth between processes. 
-In data-intensive applications, a significant proportion of execution time 
-is spent on data read and write.
-Thus, the detrimental effects of the I/O bottleneck can be more severe on 
-this type of tasks. 
-Failing to effectively access data can hinder the performance of the 
-whole application, and can lead to wasteful idle time of other resources. 
-Although efforts to increase the bandwidth of storage devices with 
-advancements in technology, such as solid-state drive (SSD), 
-the I/O bottleneck still exists.
-
-Caching is a ubiquitous technique to minimize data transfers from 
-low-speed storage by using a high-speed storage layer to store data 
-temporarily. By reusing previously accessed data for future requests, 
-caching helps reduce data transfer times. 
-Following the idea of caching, page cache is an architectural approach 
-implemented in Linux that leverages main memory to improve the 
-effectiveness in accessing data on disks and therefore reduce filesystem data transfer times.
-As main memory is known to have significantly faster read and write bandwidths 
-compared to those of disks, the idea behind page cache is to make I/O operations 
-occur in memory instead of disks.
-With the page cache, previously read data can be kept in cache and then re-read 
-directly from memory with memory read bandwidth. 
-Likewise, data can be written to memory with memory write bandwidth 
-before being asynchronously flushed to disk, resulting in better I/O performance 
-than on slower storage devices. 
-In case the amount of cache available is not sufficient for caching new data, 
-data previously read or written to page cache can be flushed to disk or 
-evicted from cache with data flushing and cache eviction mechanisms. 
-These mechanisms are implemented in the Linux kernel and triggered 
-based on specific conditions of the total amount of memory, the amount of data 
-being written (i.e., dirty data), the amount of memory available for written data, 
-configurations and parameters defined in the kernel, etc.
-These parameters combined with the above-mentioned flushing and eviction 
-mechanisms are the key features of the page cache. 
-Hence, these factors should be taken into account when determining the impact 
-of I/O on application performance, particularly in data-intensive applications.
-
-Aside from hardware resources, the existence of the page cache in systems has 
-considerable impacts on the performance of platforms as it mitigates the I/O 
-bottleneck.
-As such, it is necessary to have a simulation model of the page cache when 
-simulating data-intensive applications in order to achieve higher accuracy  
-in simulation results.
-While existing simulation frameworks of parallel and distributed computing
-systems capture many relevant features of hardware as well as software stacks, 
-they lack the ability to simulate page cache with enough details to capture 
-key features such as dirty data, data flushing mechanisms, and cache eviction 
-policies~\cite{nunez2012simcan,nunez2012icancloud}. 
-Some simulators, such as the one in~\cite{xu2018saving}, do capture such 
-features, but are domain-specific. 
-
-\section{Contributions}
-
-This thesis presents a page cache simulation model that includes features not fully captured in other 
-simulation frameworks: (1) a model of cached data,
- (2) a data flushing mechanism, and (3) 
-a cache eviction policy.  
-The thesis also presents file read and file write simulation algorithms, 
-which simulate file I/O in a chunk-by-chunk manner. 
-These functions play the role of the read and write functions in the kernel: they
-simulate file read and file write by interacting with the simulated page cache.
-We also provide the implementation of the page cache model and
-file I/O algorithms in \wrench~\cite{casanova2020fgcs}, 
-a workflow simulation framework based on the popular 
-\simgrid distributed simulation toolkit~\cite{casanova2014simgrid}. 
-In order to validate and evaluate the accuracy and scalability of the page cache 
-simulation model, we implement a simulator in pure Python as well as 
-in C with \wrench framework and compare it to a simulator with the original 
-WRENCH version, which is not integrated the page cache model. 
-The simulator is evaluated in different experiments, which include common 
-scenarios in data-intensive applications on HPC.
-The experiments include single-threaded applications, multi-threaded applications, 
-remote storage application using synthetic data, as well as a real neuroimaging 
-pipeline with real data.
-The experimental results show that our page cache model significantly improves 
-the simulation accuracy by reducing the relative simulation errors by up to 9 times. 
-Besides, our simulator not only achieves more accurate simulation results, 
-it also correctly simulates the behavior of the page cache, which proves the correctness 
-of the model and enables opportunities for further enhancements. 
-
-\section{Thesis organization}
-
-This thesis consists of five main parts divided into chapters.
-Chapter~\ref{relatedwork} provides the background knowledge of the Linux 
-page cache with key features and mechanisms. 
-It also summarizes the simulation approach of studies in HPC performance with 
-existing simulation frameworks and models. 
-The reasons for the choice of simulation tools in this thesis are explained in this 
-chapter as well.
-Chapter~\ref{method} presents the page cache simulation model with the key features 
-in three main sections.
-The first section describes the simulation of the page cache components 
-including data, page cache LRU lists and, flushing and eviction mechanisms.
-The second section interprets the file read and write simulation algorithms, 
-which are built in a chunk-by-chunk style.
-The last section in this chapter briefly presents the implementation plan to integrate 
-the page cache model into the \wrench framework.
-Chapter~\ref{experiment} proposes four experiment scenarios to validate the model
-including a single-threaded application, a concurrent applications scenario, 
-an experiment with remote storage, and a real neuroimaging application. 
-The experiment results and evaluation are also presented in this chapter. 
-Finally, Chapter~\ref{conclusion} concludes this thesis and discusses future work. 
-
+Open science, sharing open science..
+many things are shared but not alot to help people
+  
