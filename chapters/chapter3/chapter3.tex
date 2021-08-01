@@ -130,12 +130,50 @@ The metadata of a dataset is stored in a JSON file and is simply downloadable, h
 
 
 \subsection{Tools and Pipelines section}
-A Tools and Pipelines section that similarly contains a searchable list of available resources, including detailed descriptors and options for launching,
+In the Tools and Pipelines section there is a filterable list of all available pipelines in CONP,
+%the users are able to search for datasets based on specific features such as name of the dataset, data modalities
+pipelines can be searched by their names or tags. For each pipeline, the number of views and downloads, its ID and the assigned tags are provided also users are able to sort the pipelines based on title, pipeline DOI or number of downloads~\ref{fig:pipeline_card}. Furthermore, for the pipelines which are registered in CBrain, it is possible to process that pipeline on CBrain with the data that the user should select on CBrain amon all registered datasets in CBRAIN~\ref{} and the parameters of the pipeline which should be set at execution process. 
+\begin{figure*}[ht]
+  \centering
+  \includegraphics[width=\textwidth]{figures/pipelinecard.png}
+  \caption{Pipeline card. \\(Figure is copied form CONP portal at \url{https://portal.conp.ca/pipelines})}
+  \label{fig:pipeline_card}
+\end{figure*} 
 
-For searching tools and pipelines it is required to type any string included in tool name or its included tags, also they are able to sort the pipelines based on title, pipeline DOI or number of downloads.
+\begin{figure*}[ht]
+  \centering
+  \includegraphics[width=\textwidth]{figures/CBRAIN.png}
+  \caption{Data selection for processing a pipeline on CBRAIN }
+  \label{fig:cbrainDataSelection}
+\end{figure*} 
+
+\begin{figure*}[ht]
+  \centering
+  \includegraphics[width=\textwidth]{figures/CBRAIN_toolSelection.png}
+  \caption{Pipeline settings for processing on CBRAIN}
+  \label{fig:cbrainPipelineSettings}
+\end{figure*} 
 
 \subsection{Share section}
-A Share section that facilitates the upload of data, that inter-operates with other platforms such as Zenodo and OSF along with a web graphical interface to build the DATS model is also available in that section, and 
+Through the Share section, the users are able to upload of data, tool/pipeline, and they also can edit the description of existing datasets or create a new description for their uploading dataset (each dataset should be described in the assigned DATS.json file).
+
+For details and tutorials see \url{https://portal.conp.ca/share}
+
+\subsubsection{Uploading data}
+
+To upload their data, firstly the users should assign README and DATS.json files to the root directory of their dataset then they will be able to upload their dataset through Zenodo, OSF or Datalad. For uploading through Zenodo, for datasets larger than 50GB it is required to contact Zenodo support and request for larger dataset before uploading. Also for restricted access datasets they need to create Zenodo Personal Access Token and send it CONP Technical Steering Committee.
+
+
+\subsubsection{Publish tool/pipeline}
+The first step for publishing the tool/pipeline is to describe a command line
+
+The first step in creating a tool descriptor for your command line call is creating a fully descriptive list of your command line options. If your tool was written in Python and you use the argparse library, then this is already done for you in large part. For many tools (bash, Python, or otherwise) this can be obtained by executing it with the -h flag. In the case of FSL BET, we get the following from our container image:
+
+\subsubsection{DATS editor}
+
+that inter-operates with other platforms such as Zenodo and OSF along with a web graphical interface to build the DATS model is also available in that section, and 
+
+can edit DATS.json and assigne to a dataset
 
 detailed dataset descriptions in the form of a DATS.json file (based on schema.org)
     a web-based interface to facilitate the creation of the dataset descriptor (DATS.json)
