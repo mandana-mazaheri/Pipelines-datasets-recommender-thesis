@@ -165,22 +165,15 @@ To upload their data, firstly the users should assign README and DATS.json files
 
 
 \subsubsection{Publish tool/pipeline}
-The first step for publishing the tool/pipeline is to describe a command line
+The first step for publishing the tool/pipeline is to describe a command line for that and describe all possible options for their command line. Then they should create the JSON file which represents as the Boutiques tool descriptor (as mentioned before, all tools/pipelines in CONP are described in Boutiques), and requires a set of keys or properties which some of them are mandatory to be defined such as 'name' and 'input' and some are optional such as 'suggested-resources'. Then after finalizing the details about the parameters, input and output, and validating the tool descriptor, it would be ready to be published through Zenodo (See the full tutorial \href{https://nbviewer.jupyter.org/github/boutiques/tutorial/blob/master/notebooks/boutiques-tutorial.ipynb}{here}).  
 
-The first step in creating a tool descriptor for your command line call is creating a fully descriptive list of your command line options. If your tool was written in Python and you use the argparse library, then this is already done for you in large part. For many tools (bash, Python, or otherwise) this can be obtained by executing it with the -h flag. In the case of FSL BET, we get the following from our container image:
+
 
 \subsubsection{DATS editor}
-
-that inter-operates with other platforms such as Zenodo and OSF along with a web graphical interface to build the DATS model is also available in that section, and 
-
-can edit DATS.json and assigne to a dataset
-
-detailed dataset descriptions in the form of a DATS.json file (based on schema.org)
-    a web-based interface to facilitate the creation of the dataset descriptor (DATS.json)
+There is a web interface available in CONP (\url{https://portal.conp.ca/dats-editor}) which helps users to generate the required DATS.json file describing their dataset and assign to that before uploading. They are also able to select the DATS file of an existing dataset on CONP, modify it using this interface and finally download the generated DATS.json file, then request CONP admin to accept that. 
 
 \subsection{FAQ section}
-An FAQ section for user support in addition to the Contact Us form.
-
+In FAQ section, there are a set of questions and answer to support the user available at \url{https://portal.conp.ca/faq}
 
 
 % The Portal internalizes the typical cycle of a research project, beginning with data acquisition, followed by data processing with published tools, and ultimately the publication of results with a link to the original dataset.
