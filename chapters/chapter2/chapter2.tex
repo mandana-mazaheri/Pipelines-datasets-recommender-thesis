@@ -157,7 +157,12 @@ The NITRC Computational Environment is a freely downloadable, virtual computing 
 
 
 \section{recommender systems}
+There are two main strategies for recommender systems, content-based and collaborative filtering. In a content-based recommender system there are user profiles and item profiles to describe users and items by some features or tags. For movie items, genre, actors and director can be some features. The main approach is to recommend to a user the items which are similar to what he has been interested in before, so it is mostly based on individual actions of a user. Measuring similarity is performed by some functions such as cosine distance and Jaccard distance [Rajaraman A,2010].However, we did not select this approach as our main methodology for this recommender system, since there are some limitations with the representation of object profiles in CONP for a content-based recommender.
+
 \subsection{Content based}
-\subsection{collaborative filtering}
+\subsection{Collaborative filtering}
+Collaborative filtering approach for recommender systems, focuses on user-item interactions. There are three main categories of Collaborative Filtering, Memory-based, Model-based and Hybrid CF. Neighbor-based CF (kNN) and Latent semantic CF are well known techniques in Memory-based and Model-based categories respectively  [X Su 2009]. In Neighbor-based CF the goal is to identify like-minded users based on similarity of their item ratings or purchasing history, moreover, finding items that are rated similarly would be another goal in this technique [Y Koren 2007]. In Latent factor (Latent semantic CF or Factorization-based) model, the observation (rating) matrix is modeled as a product of a user factor matrix and an item factor matrix [S Girase, 2015], and the goal is to estimate the missing user-item pair value (user feedback) by calculating latent features that accurately describe the interaction between users and items [Y Koren 2011]. A popular and accurate method in latent factor model is Singular Value Decomposition (SVD), where each user and item is represented by a factor vector, and the prediction is done by computing the inner product of these vectors  [Y Koren 2008]. 
+All collaborative filtering techniques work by user actions or feedback, user feedback data is divided in two main categories, explicit feedback and implicit feedback. Explicit feedback points to capturing user preferences in a explicit and direct way, such as rating movies, which is a difficult to get approach. However, implicit feedback, refers to all recorded behaviour of user which illustrates their preference, this type of feedback can be easily available  [Nathan N. Liu 2010]. 
+
 
 
