@@ -6,6 +6,8 @@
 % 2.1.1 data and tool sharing in neuroscience
 
 % the platfroms that share tools and pipelines , (the infrustructure)  an overview of CONP as well
+\MM{WHY I talked about each topic here?...}
+
 
 In this chapter, in section one we explain what Open Science is, FAIR principles~\cite{FAIR_Principles} which are defined for open science, and how open science can be helpful for researchers and scientists. We will then explain that open science is highly noticeable in neuroscience in section two and will write about some of the existing data and tool sharing platforms which attempt to guarantee FAIR principles~\cite{wilkinson2016fair}. In section three we will explain the recommender systems and the two main strategies.
 
@@ -156,10 +158,62 @@ The NITRC Computational Environment is a freely downloadable, virtual computing 
 
 
 
-\section{recommender systems}
-There are two main strategies for recommender systems, content-based and collaborative filtering. In a content-based recommender system there are user profiles and item profiles to describe users and items by some features or tags. For movie items, genre, actors and director can be some features. The main approach is to recommend to a user the items which are similar to what he has been interested in before, so it is mostly based on individual actions of a user. Measuring similarity is performed by some functions such as cosine distance and Jaccard distance [Rajaraman A,2010].However, we did not select this approach as our main methodology for this recommender system, since there are some limitations with the representation of object profiles in CONP for a content-based recommender.
+\section{Recommender Systems}
+
+Recommender System or recommendation system is included in the information filtering systems which aim at providing suggestions for items to a user by predicting the 'rating' or 'preference' a user would give to an item\cite{isinkaye2015recommendation,ricci2011introduction}. These suggestions might come out of various decision-making processes, whether or not to buy an item, listen to a piece of music or read an article. Also, 'item' is a general purpose term referring to what the system will recommend to its users, for instance it can be software tool, news or magazine, and products to purchase. The definitions provided in the rest of this section are mostly summary of chapter 9 of 'Mining of Massive Datasets'~\cite{rajaraman2011mining}.
+
+Currently, the recommender systems can be seen in anywhere that there exists a possible user who needs to decide to choose an 'item'. From the most popular recommendation systems we can point to product recommendations, movie recommendations and news and article recommendations. In product recommendations, online retailers such as Amazon are increasingly attempting to attract and keep their users with suggesting more relevant product that they might like to buy. This will lead to a win-win outcome, finding relevant products for the users and increasing the revenue for the business owners. Another application of recommender systems is movie recommendations such as Netflix, which recommends its users the movies or TV shows that they might like based on many factors such as previous watched movies, the ratings (currently 'like' or 'dislike') given or the similar users' choices. There are so many other factors that helps Netflix to provide good suggestions for its users. Another application of recommender systems can be in news and articles, "news services have attempted to identify articles of interest to readers, based on the articles that they have read in the past. The similarity might be based on the similarity of important words in the
+documents, or on the articles that are read by people with similar reading
+tastes. The same principles apply to recommending blogs from among
+the millions of blogs available, videos on YouTube, or other sites where content is provided regularly"~\cite{rajaraman2011mining}.
+
+
+
+
+
+There are several technologies in recommender systems to find the best 'item' for a 'user' that we can classify them in two broad groups, Content-based and Collaborative ﬁltering \cite{rajaraman2011mining}. In a content-based recommender system focuses on item/user profile which describes a set of features and properties of that item/user. Then recommends an item to a user if it is similar to the previous choices of the user. However, a Collaborative filtering recommender system focuses on the relationship between users and items; an items will be recommended to a user if it is preferred by similar users. 
+
+Before going through detailed explanations of Content-based and Collaborative Filtering recommendation approaches, we need to define the Utility Matrix and its role in recommendation approaches. 
+\subsection{Utility Matrix}
+In the recommender systems 'user' and 'item' are the terms used to represent the two main classes of entities.  The Utility Matrix is indexed with users' ids on one axis and items' on the other and includes values assigned to each pair of user-item which represents the user's preference for the item. In this case, values might represent the item's rating given by the user, 1-5 stars for example. Usually, the utility matrix is sparse, meaning that the rating value for most of the user-item pairs are 'unknown', which implies that there have not been explicit information about the user's preference for that item. 
+%, or the number of time a user has selected the item ( >= 0), for instance the number of downloads, views or buying an item.
+
+Figure~\ref{fig:utilityMatrix} is an example in which the utility matrix represents the ratings (1-5) for movies (HP1, HP2, and HP3 for Harry Potter I, II, and III, TW for Twilight, and SW1,
+SW2, and SW3 for Star Wars episodes 1, 2, and 3) given by the users (A,B,C,D). The blank units represents unknowns, in which the user has not rated the movie. In practice, the utility matrices are mostly sparser than this matrix, since there is a small fraction of real users who give explicit feedback on items. The goal of the recommender system is to predict the value for the blanks in the utility matrix.
+
+% We should also be aware of a slightly diﬀerent goal that makes sense in
+% many applications. It is not necessary to predict every blank entry in a utility
+% matrix. Rather, it is only necessary to discover some entries in each row that
+% are likely to be high. In most applications, the recommendation system does
+% not oﬀer users a ranking of all items, but rather suggests a few that the user
+% should value highly. It may not even be necessary to ﬁnd those items with
+% the highest expected ratings, but only to ﬁnd a large subset of those with the
+% highest ratings.
+
+\begin{figure*}[ht]
+  \centering
+  \includegraphics[width=\textwidth]{figures/utilityMatrix.png}
+  \caption{A utility matrix representing ratings of movies on a 1–5 scale. The figure is derived from chapter 9 of MMDS book~\cite{rajaraman2011mining}}
+  \label{fig:utilityMatrix}
+\end{figure*} 
+
+
+The utility matrix is the most important requirement to generate a recommendation system. However, it is usually difficult to acquire data from users for the utility matrix. There are two general approaches to gather data from users, first by asking them to rate the items. For instance, asking them to rate after watching a movie or buying a product. However, this this approach is not eﬀective, "since generally
+users are unwilling to provide responses, and the information from those
+who do may be biased by the very fact that it comes from people willing
+to provide ratings"~\cite{rajaraman2011mining}. Another approach would be data acquisition from users interactions and behaviour. For instance, if a user
+buys a product, watches a movie, or reads an article, it represents that they 'liked' that item. For this sort of rating the only value is 1 (for getting user's response) and the unknown pairs would be 0; in this case 0 is not lower that 1, it is no rating at all.
 
 \subsection{Content based}
+Content-based recommender systems focus on the item's properties described in its profile and then recommends a user the similar items to the ones they 'liked' before. Similarity between items will be gained by measuring the similarity between their profiles. Users also can have their profiles describing their properties.
+
+In this section we will explain item and user profiles, how to gather the information from different types of items and how exactly the content-based recommendation system works. 
+
+\subsubsection{Item profile}
+
+
+
+
 \subsection{Collaborative filtering}
 Collaborative filtering approach for recommender systems, focuses on user-item interactions. There are three main categories of Collaborative Filtering, Memory-based, Model-based and Hybrid CF. Neighbor-based CF (kNN) and Latent semantic CF are well known techniques in Memory-based and Model-based categories respectively  [X Su 2009]. In Neighbor-based CF the goal is to identify like-minded users based on similarity of their item ratings or purchasing history, moreover, finding items that are rated similarly would be another goal in this technique [Y Koren 2007]. In Latent factor (Latent semantic CF or Factorization-based) model, the observation (rating) matrix is modeled as a product of a user factor matrix and an item factor matrix [S Girase, 2015], and the goal is to estimate the missing user-item pair value (user feedback) by calculating latent features that accurately describe the interaction between users and items [Y Koren 2011]. A popular and accurate method in latent factor model is Singular Value Decomposition (SVD), where each user and item is represented by a factor vector, and the prediction is done by computing the inner product of these vectors  [Y Koren 2008]. 
 All collaborative filtering techniques work by user actions or feedback, user feedback data is divided in two main categories, explicit feedback and implicit feedback. Explicit feedback points to capturing user preferences in a explicit and direct way, such as rating movies, which is a difficult to get approach. However, implicit feedback, refers to all recorded behaviour of user which illustrates their preference, this type of feedback can be easily available  [Nathan N. Liu 2010]. 
