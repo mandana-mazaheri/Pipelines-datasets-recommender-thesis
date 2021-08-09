@@ -2,14 +2,12 @@
 \label{background}
 
 %2.1-open neuro science
-\cite{abrams2021standards}
+\cite{abrams2021standards} \TG{why is this reference alone?}
 % 2.1.1 data and tool sharing in neuroscience
 
 % the platfroms that share tools and pipelines , (the infrustructure)  an overview of CONP as well
-\MM{WHY I talked about each topic here?...}
-
-
-In this chapter, in section one we explain what Open Science is, FAIR principles~\cite{FAIR_Principles} which are defined for open science, and how open science can be helpful for researchers and scientists. We will then explain that open science is highly noticeable in neuroscience in section two and will write about some of the existing data and tool sharing platforms which attempt to guarantee FAIR principles~\cite{wilkinson2016fair}. In section three we will explain the recommender systems and the two main strategies.
+In this chapter, we expand the explanations about the concepts and required knowledge for this thesis. First, we expand open-science and its principles since the resources and infrastructures we employed in the thesis are compatible with open-science criteria. In section one, we explain the FAIR principles~\cite{FAIR_Principles} which are defined for open science, and how open science can be helpful for researchers and scientists.
+We will then explain that open science is highly noticeable in neuroscience in section two and will write about some of the existing data and tool sharing platforms that attempt to guarantee FAIR principles~\cite{wilkinson2016fair}. Recommender systems is a key concept for our project. Therefore, in section three, we will explain the recommender systems, the leading strategies and applications.
 
 % , there is no infrastructure which helps researchers in creating relevant analysis from these resources which led us to generate a recommender system for scientific pipelines and datasets.
 
@@ -19,55 +17,57 @@ In this chapter, in section one we explain what Open Science is, FAIR principles
 
 \section{Open Science}
 
-Open science is a collection of actions designed to make scientific processes more transparent and results more accessible. Its goal is to build a more replicable and robust science~\cite{spellman_gilbert_corker_2017}. Open science means that all steps in scientific research (including publications, data, physical samples, and software) should be publicly accessible to all levels of an inquiring society, amateur or professional~\cite{woelfle2011open}. In 2016 ‘FAIR Guiding Principles for scientific data management and stewardship’ were published and intended to provide guidelines to improve the Findability, Accessibility, Interoperability, and Reusability of digital assets with the objective of promoting open science. Importantly, these principles apply not only to ‘data’ in the conventional sense, but also to the algorithms, tools, and workﬂows that led to that data. All scholarly digital research objects (from data to analytical pipelines) beneﬁt from application of these principles, since all components of the research process must be available to ensure transparency, reproducibility, and reusability.
+Open science is a collection of actions designed to make scientific processes more transparent and results more accessible. Its goal is to build a more replicable and robust science~\cite{spellman_gilbert_corker_2017}. Open science means that all steps in scientific research (including publications, data, physical samples, and software) should be publicly accessible to all levels of an inquiring society, amateur or professional~\cite{woelfle2011open}. In 2016, the 'FAIR Guiding Principles for scientific data management and stewardship' were published and intended to provide guidelines to improve the Findability, Accessibility, Interoperability, and Reusability of digital assets to promote open science. Importantly, these principles apply to 'data' in the conventional sense and to the algorithms, tools, and workﬂows that led to that data. All scholarly digital research objects (from data to analytical pipelines) beneﬁt from applying these principles since all components of the research process must be available to ensure transparency, reproducibility, and reusability.
 
-The following explanations about the definitions of FAIR principles is derived from FAIR website~\cite{FAIR_Principles}.  
+The following explanations about the definitions of FAIR principles are derived from the FAIR website~\cite{FAIR_Principles}.  
 \subsection*{Findability}
 Finding the data is the first step of reusing them so metadata and data should be easy to find for both humans and computers, to achieve that, the metadata should be machine-readable for automatic discovery of datasets and services.
 Findability includes four principles:
 \subsubsection*{F1. (Meta)data are assigned a globally unique and persistent identifier}
-It is essential for data or metadata to be assigned a globally unique and persistent identifier to remove ambiguity, make findability more feasible and help others for the citation when they reuse the data. Some data repositories will automatically generate such identifiers for the deposited datasets
+Data or metadata needs to be assigned a globally unique and persistent identifier to remove ambiguity, make findability more feasible and help others for the citation when they reuse the data. Some data repositories will automatically generate such identifiers for the deposited datasets
 
 \subsubsection*{F2. Data are described with rich metadata}
-Rich metadata means that the description of the data should include information about the context, quality and condition, or characteristics of the data therefore users will be able to find data based on the information provided by their metadata, even without the data’s identifier.
+Rich metadata means that the description of the data should include information about the context, quality and condition, or characteristics of the data therefore, users will be able to find data based on the information provided by their metadata, even without the data's identifier.
 
 \subsubsection*{F3. Metadata clearly and explicitly include the identifier of the data they describe}
-This principle is critically important since usually the metadata and the data itseld are in seperate files, therefore the association between them should be made explicit by mentioning a dataset’s globally unique and persistent identifier in the metadata. 
+This principle is critically important since usually the metadata and the data itself are in separate files. Therefore the association between them should be made explicit by mentioning a dataset's globally unique and persistent identifier in the metadata. 
 \subsubsection*{F4. (Meta)data are registered or indexed in a searchable resource}
-To ensure 'findability' the data and resources should be discoverable using indexing which will be achieved by F1-F3.
+To ensure 'findability,' the data and resources should be discoverable using indexing which will be achieved by F1-F3.
 
 \subsection*{Accessibility}
-After finding the data, the user needs to know how to access or get the data, to make it happen there are two required principles:
+After finding the data, the user needs to know how to access or get the data. There are two required principles to make it happen :
 
-\subsubsection*{A1. (Meta)data are retrievable by their identifier using a standardised communications protocol}
+\subsubsection*{A1. (Meta)data are retrievable by their identifier using a standardized communications protocol}
 To make the (meta)data retrievable, the protocol is required to guarantee the following principles: 
 
-\quad A1.1.The protocol should be open, free, and universally implementable to facilitate data retrieval so that anyone with a computer and an internet connection can access at least the metadata.
+\quad A1.1. The protocol should be open, free, and universally implementable to facilitate data retrieval so that anyone with a computer and an internet connection can access at least the metadata.
 
-\quad A1.2. The protocol should allow for an authentication and authorisation procedure, where necessary. Meaning that, accessibility does not necessary mean 'open' or 'free', and it is required for the data repositories to provide the conditions or instructions under which the data will be accessible. Creating an account in repositories for the data user for instance.
+\quad A1.2. The protocol should allow for an authentication and authorization procedure, where necessary. Meaning that accessibility does not necessarily mean 'open' or 'free,' and it is required for the data repositories to provide the conditions or instructions under which the data will be accessible, creating an account in repositories for the data user, for instance.
 
 \subsubsection*{A2. Metadata are accessible, even when the data are no longer available}  Accessibility of metadata is related to the registration and indexing issues described in F4. 
 
 
 \subsection*{Interoperability}
-The data usually need to be integrated with other data or inter-operate with applications or workflows for analysis, storage, and processing, to make it happen it is required that:
+The data usually need to be integrated with other data interoperate with applications or workflows for analysis, storage, and processing. To make it happen, it is required that:
 
 
 \subsubsection*{I1. (Meta)data use a formal, accessible, shared, and broadly applicable language for knowledge representation}
 
-"Interoperability typically means that each computer system at least has knowledge of the other system’s data exchange formats"~\cite{FAIR_Principles}. To make this happen it is required to use commonly used controlled vocabularies, anthologies, and a good data model to describe and structure (meta)data.
+"Interoperability typically means that each computer system at least has knowledge of the other system's data exchange formats" ~\cite{FAIR_Principles}. To make this happen, it is required to use commonly used controlled vocabularies, anthologies, and a good data model to describe and structure (meta)data.
  
 \subsubsection*{I2. (Meta)data use vocabularies that follow FAIR principles}
+
+\TG{add some text here}
 % The controlled vocabulary used to describe datasets needs to be documented and resolvable using globally unique and persistent identifiers. This documentation needs to be easily findable and accessible by anyone who uses the dataset.
 
 \subsubsection*{I3. (Meta)data include qualified references to other (meta)data}
-It should be specified in the metadata if one dataset builds on another dataset, or if additional datasets are required to complete the data, or if complementary information is stored in a different dataset. In particular, the scientific links between the datasets need to be described.
+It should be specified in the metadata if one dataset builds on another dataset, additional datasets are required to complete the data, or complementary information stored in a different dataset. In particular, the scientific links between the datasets need to be described.
 
 \subsection*{Reusability}
-To achieve the final principle in FAIR it is required that:
+To achieve the final principle in FAIR, it is required that:
 
 \subsubsection*{R1. (Meta)data are richly described with a plurality of accurate and relevant attributes}
-It would be much easier to find and reuse data if metadata includes many labels, R1 is related to F2, however, R1 means if the user or machine is able to decide if the data is actually 'useful' in a particular context. Therefore, metadata should richly describes the context under which the data was generated. 
+It would be much easier to find and reuse data if metadata includes many labels. R1 is related to F2; however, R1 means if the user or machine can decide if the data is actually 'useful' in a particular context. Therefore, metadata should richly describe the context under which the data was generated. 
 
 \quad R1.1. (Meta)data are released with a clear and accessible data usage license,
 
@@ -85,25 +85,25 @@ It would be much easier to find and reuse data if metadata includes many labels,
 
 
 \section{Open neuroscience}
-In the world of neuroscience a lot of attempts have been
- made to simplify reproducible research, specifically in neuroimaging, and functional Magnetic Resonance Imaging (fMRI)\cite{Schottner_2020}. Also it is important for such platforms to satisfy FAIR principles. Among the existing platfroms for open neuroscience, we introduce OpenNuero, NeuroImaging Tools \& Resources Collaboratory (NITRIC) and Canadian Open Neuroscience Platform (CONP).
+In the world of neuroscience, many attempts have been
+ made to simplify reproducible research, specifically in neuroimaging and functional Magnetic Resonance Imaging (fMRI)~\cite{Schottner_2020}. Also, such platforms need to satisfy FAIR principles. Among the existing platforms for open neuroscience, we introduce OpenNuero, NeuroImaging Tools \& Resources Collaboratory (NITRIC) and Canadian Open Neuroscience Platform (CONP).
 
 
 \subsection{OpenNeuro}
-\href{https://openneuro.org}{OpenNeuro}, formerly known as OpenfMRI\cite{poldrack2017openfmri}, is a free online platform for storing, sharing and analysing of neuroimaging data~\cite{gorgolewski2017openneuro}. Researchers can upload their own data to share it with others and download others shared data, also they can run analysis pipelines on the data. 
+\href{https://openneuro.org}{OpenNeuro}, formerly known as OpenfMRI~\cite{poldrack2017openfmri}, is a free online platform for storing, sharing and analyzing neuroimaging data~\cite{gorgolewski2017openneuro}. Researchers can upload their data to share it with others and download others' shared data; also, they can run analysis pipelines on the data. 
 
-\subsubsection{Uploading and sharing the data}
- OpenNeuro only accepts BIDS~\cite{gorgolewski2016brain} compatible datasets,(MRI, MEG, EEG, iEEG, ECoG, ASL, and PET data), and all datasets will by validated to be BIDS compatible before being uploaded. In OpenNeuro, when uploading data, users can specify if their data will be accessible publicly or not, however, the user agrees that the uploaded data on will be publicly accessible after 18 months. After uploading the data on OpenNeuro, the users are able to change the dataset, change metadata, apply versioning on the dataset or make copies of the dataset to guarantee the reputability of analysis. 
+\subsubsection{Uploading and sharing data}
+ OpenNeuro only accepts BIDS~\cite{gorgolewski2016brain} \TG{reviewers won't understand what BIDS is if you don't explain it} compatible datasets (MRI, MEG, EEG, iEEG, ECoG, ASL, and PET data), and all datasets will be validated to be BIDS compatible before being uploaded. In OpenNeuro, users can specify whether their data will be accessible publicly or not; however, the user agrees that the uploaded data will be publicly accessible after 18 months. After uploading the data on OpenNeuro, the users can change the dataset, change metadata, apply versioning on the dataset or make copies of the dataset to guarantee the reputability of analysis. 
  
- The users can share their uploaded data with other colleagues or researchers and specify the level of access ranging from viewing to administration 
+ The users can share their uploaded data with other colleagues or researchers and specify the level of access ranging from viewing to administration. 
 
 \subsubsection{Running analysis on the data }
-The most exiting feature of OpenNeuro is that the users are able to run different analysis on the data and share the results of that. The user can select one of the containerized analysis pipelines among all available BIDS Apps to apply on the dataset. The only applicable tools are BIDS Apps~\cite{gorgolewski2017bids} since, as mentioned above, OpenNeuro accept only BIDS compatible dataset. After selecting a BIDS App, the user can set parameters and specify if the analysis should run on the whole dataset or on specific subject or sessions. Then the user can download all the generated results, use them for higher level costume analysis and the will have access to all logs for the executed analysis and will be able to debug the process if it has failed.
+The most exciting feature of OpenNeuro is that the users are able to run further analysis on the data and share the results of that. The user can select one of the containerized analysis pipelines among all available BIDS Apps to apply to the dataset. The only applicable tools are BIDS Apps~\cite{gorgolewski2017bids} since, as mentioned above, OpenNeuro accepts only BIDS compatible datasets. After selecting a BIDS App, the user can set parameters and specify if the analysis should run on the whole dataset or on specific subjects or sessions. Then the user can download all the generated results, use them for higher-level costume analysis and will have access to all logs for the executed analysis and will be able to debug the process if it has failed.
 
 
 \subsection{NeuroImaging Tools and Resources Collaboratory (NITRIC)} 
 The Neuroimaging Informatics Tools and Resources Collaboratory
-(\href{www.nitrc.org}{NITRIC}) provides a triad of services include a Resources Registry (NITRIC-R), Image Repository (NITRIC-IR) and a cloud Computational Environment (NITRIC-CE) to meet the needs of the neuroimaging researchers\cite{kennedy2016nitrc,howToCiteNITRIC_website}\MM{how to cite nitric website as they mentioned?}.
+(\href{www.nitrc.org}{NITRIC}) provides a triad of services include a Resources Registry (NITRIC-R), Image Repository (NITRIC-IR) and a cloud Computational Environment (NITRIC-CE) to meet the needs of the neuroimaging researchers~\cite{kennedy2016nitrc,howToCiteNITRIC_website}\MM{how to cite nitric website as they mentioned?}.
 
 
 
@@ -115,7 +115,7 @@ The Neuroimaging Informatics Tools and Resources Collaboratory
 \subsubsection{NITRIC-R}
 
 Resources, in this case, are broadly deﬁned to include software, hardware, data,
-websites, community organizations, etc. NITRC-R gives researchers greater and more efficient access to the tools and resources they need, better categorizing and organizing existing tools and resources, facilitating interactions between researchers and developers, and promoting better use through enhanced documentation and tutorials, forums, and updates. 
+websites, community organizations, etc. NITRC-R gives researchers better and more efficient access to the tools and resources they need, better categorizing and organizing existing tools and resources, facilitating interactions between researchers and developers, and promoting better use through enhanced documentation and tutorials, forums, and updates. 
 
 Each NITRC project has a homepage that describes the resources, provides
 a standard set of resource characteristics (i.e. keywords, license,
@@ -123,25 +123,23 @@ dependencies, etc.), and provides a standard set of links for the resources
 (i.e. download, documentation, support, etc.). Each resource page is
 maintained by the resource administrator, who is responsible for
 keeping it up to date. For every
-project, resource administrators are also free to enable/disable any
-functionality and redirect any content to other sources, as pertinent to
+project, resource administrators are free to enable/disable any
+functionality and redirect any content to other sources pertinent to
 the resource developers' needs. Visitors to the NITRC site can search
-for resources based on keywords, free text and speciﬁc capabilities in
-order to ﬁnd relevant resources. Currently, there are more that 1200 registered tools and 43000 registered users in NITRIC-R. 
+for resources based on keywords, free text and speciﬁc capabilities to ﬁnd relevant resources. Currently, there are more than 1200 registered tools and 43000 registered users in NITRIC-R. 
 
 \subsubsection{NITRIC-IR}
 
-NITRC Image Repository offers a cloud-based federated neuroimaging data storage system for resource sharing of neuroimaging data in DlCOM and NIfTI formats. Currently it includes thousands of subjects and imaging sessions searchable across over a dozen projects to promote re-use and integration of valuable NIH-funded data.
+NITRC Image Repository offers a cloud-based federated neuroimaging data storage system for sharing neuroimaging data in DlCOM and NIfTI formats. Currently, it includes thousands of subjects and imaging sessions searchable across over a dozen projects to promote the re-use and integration of valuable NIH-funded data.
 
-The NITRC-IR is built on XNAT~\cite{marcus2007extensible} and provides sharing infrastructure for images and related data that can be closely integrated with the NITRC-R resources in order to better, support, promote, and manage data sharing functions for NITRC-hosted projects.
-NITRC-R projects can be associated with NITRC-IR (XNAT) ‘projects’ and these can be interlinked. 
+The NITRC-IR is built on XNAT~\cite{marcus2007extensible} and provides sharing infrastructure for images and related data that can be closely integrated with the NITRC-R resources in order to better support, promote, and manage data sharing functions for NITRC-hosted projects.
+NITRC-R projects can be associated with NITRC-IR (XNAT) ‘projects,’ which can be interlinked. 
 % From the search results you may select and download images. NITRC's Image Repository leverages XNAT software: Extensible Neuroimaging Archive Toolkit. 
 
 
 \subsubsection{NITRIC-CE}
 
-The NITRC Computational Environment is a freely downloadable, virtual computing cloud-based platform built upon a NeuroDebian operating system. NITRC-CE preinstalls popular neuroimaging tools such as AFNI, ANTS, FreeSurfer, FSL, C-PAC, and MRIcron (for the complete list of tools click \href{https://www.nitrc.org/plugins/mwiki/index.php/nitrc:User_Guide_-_NITRC-CE_Installed_Packages}{here}) into a standardized computational environment to help users analyze their data quickly and easily. This environment can be deployed in the cloud (using Amazon Web Services Elastic Compute Cloud (EC2) or the Microsoft Azure Cloud Computing Platform), or as a virtual machine for local use. To run analysis, NITRIC-CE can access data through NITRIC-IR, NITRIC-R, secure ﬁle transfer from outside sources, and ﬁle system mounting of AWS S3 resources.
-
+The NITRC Computational Environment is a freely downloadable, virtual computing cloud-based platform built upon a NeuroDebian operating system. NITRC-CE preinstalls popular neuroimaging tools such as AFNI, ANTS, FreeSurfer, FSL, C-PAC, and MRIcron (for the complete list of tools, click \href{https://www.nitrc.org/plugins/mwiki/index.php/nitrc:User_Guide_-_NITRC-CE_Installed_Packages}{here}) into a standardized computational environment to help users analyze their data quickly and easily. This environment can be deployed in the cloud (using Amazon Web Services Elastic Compute Cloud (EC2) or the Microsoft Azure Cloud Computing Platform), or as a virtual machine for local use. To run analysis, NITRIC-CE can access data through NITRIC-IR, NITRIC-R, secure ﬁle transfer from outside sources, and ﬁle system mounting of AWS S3 resources.
 
 % \subsubsection{Access and data sharing in NITRIC}
 % Each NITRC project manages its own access policy. Data, in either
@@ -160,26 +158,26 @@ The NITRC Computational Environment is a freely downloadable, virtual computing 
 
 \section{Recommender Systems}
 
-Recommender System or recommendation system is included in the information filtering systems which aim at providing suggestions for items to a user by predicting the 'rating' or 'preference' a user would give to an item\cite{isinkaye2015recommendation,ricci2011introduction}. These suggestions might come out of various decision-making processes, whether or not to buy an item, listen to a piece of music or read an article. Also, 'item' is a general purpose term referring to what the system will recommend to its users, for instance it can be software tool, news or magazine, and products to purchase. The definitions provided in the rest of this section are mostly summary of chapter 9 of 'Mining of Massive Datasets'~\cite{rajaraman2011mining}.
+Recommender systems or recommendation systems are included in the information filtering systems which aim at providing suggestions for items to a user by predicting the 'rating' or 'preference' a user would give to an item~\cite{isinkaye2015recommendation,ricci2011introduction}. These suggestions might come from various decision-making processes, whether or not to buy an item, listen to a piece of music or read an article. Also, 'item' is a general-purpose term referring to what the system will recommend to its users. For instance, it can be a software tool, news or magazine, and products to purchase. The definitions provided in the rest of this section are mostly a summary of Chapter 9 of~\cite{rajaraman2011mining}.
 
-Currently, the recommender systems can be seen in anywhere that there exists a possible user who needs to decide to choose an 'item'. From the most popular recommendation systems we can point to product recommendations, movie recommendations and news and article recommendations. In product recommendations, online retailers such as Amazon are increasingly attempting to attract and keep their users with suggesting more relevant product that they might like to buy. This will lead to a win-win outcome, finding relevant products for the users and increasing the revenue for the business owners. Another application of recommender systems is movie recommendations such as Netflix, which recommends its users the movies or TV shows that they might like based on many factors such as previous watched movies, the ratings (currently 'like' or 'dislike') given or the similar users' choices. There are so many other factors that helps Netflix to provide good suggestions for its users. Another application of recommender systems can be in news and articles, "news services have attempted to identify articles of interest to readers, based on the articles that they have read in the past. The similarity might be based on the similarity of important words in the
-documents, or on the articles that are read by people with similar reading
-tastes. The same principles apply to recommending blogs from among
-the millions of blogs available, videos on YouTube, or other sites where content is provided regularly"~\cite{rajaraman2011mining}.
-
-
+Currently, the recommender systems can be seen anywhere that a possible user needs to choose an 'item.' From the most popular recommendation systems, we can point to product recommendations, movie recommendations and news and article recommendations. In product recommendations, online retailers such as Amazon are increasingly attempting to attract and keep their users by suggesting more relevant products that they might like to buy. This will lead to a win-win outcome, finding relevant products for the users and increasing the revenue for the business owners. Another application of recommender systems is movie recommendations such as Netflix, which recommends to its users the movies or TV shows that they might like based on many factors such as previously watched movies, the ratings (currently 'like' or 'dislike') given or the similar users' choices. There are so many other factors that help Netflix to provide good suggestions for its users. Another application of recommender systems can be in news and articles, "news services have attempted to identify articles of interest to readers, based on the articles they have read in the past. The similarity might be based on important words in the
+documents or the articles that people with similar reading
+tastes have read. The same principles apply to recommending blogs from among
+the millions of blogs available, videos on YouTube, or other sites where content is provided regularly"~\cite{rajaraman2011mining}. \TG{citation is too long}
 
 
 
-There are several technologies in recommender systems to find the best 'item' for a 'user' that we can classify them in two broad groups, Content-based and Collaborative ﬁltering \cite{rajaraman2011mining}. In a content-based recommender system focuses on item/user profile which describes a set of features and properties of that item/user. Then recommends an item to a user if it is similar to the previous choices of the user. However, a Collaborative filtering recommender system focuses on the relationship between users and items; an items will be recommended to a user if it is preferred by similar users. 
+
+
+There are several technologies in recommender systems to find the best 'item' for a 'user' that we can classify in two broad groups, Content-based and Collaborative ﬁltering \cite{rajaraman2011mining}. A content-based recommender system focuses on an item/user profile which describes a set of features and properties of that item/user. Then recommends an item to a user if it is similar to the previous choices of the user. However, a Collaborative filtering recommender system focuses on the relationship between users and items; items will be recommended to a user if similar users prefer it. 
 
 Before going through detailed explanations of Content-based and Collaborative Filtering recommendation approaches, we need to define the Utility Matrix and its role in recommendation approaches. 
 \subsection{Utility Matrix}
-In the recommender systems 'user' and 'item' are the terms used to represent the two main classes of entities.  The Utility Matrix is indexed with users' ids on one axis and items' on the other and includes values assigned to each pair of user-item which represents the user's preference for the item. In this case, values might represent the item's rating given by the user, 1-5 stars for example. Usually, the utility matrix is sparse, meaning that the rating value for most of the user-item pairs are 'unknown', which implies that there have not been explicit information about the user's preference for that item. 
-%, or the number of time a user has selected the item ( >= 0), for instance the number of downloads, views or buying an item.
+In the recommender systems, 'user' and 'item' are the terms used to represent the two main classes of entities.  The Utility Matrix is indexed with users' ids on one axis and items' on the other and includes values assigned to each user-item pair, representing the user's preference for the item. In this case, values might represent the item's rating given by the user, 1-5 stars, for example. Usually, the utility matrix is sparse, meaning that the rating value for most user-item pairs is 'unknown,' which implies that there has not been explicit information about the user's preference for that item. 
+%, or the number of times a user has selected the item ( >= 0), for instance, the number of downloads, views or buying an item.
 
 Figure~\ref{fig:utilityMatrix} is an example in which the utility matrix represents the ratings (1-5) for movies (HP1, HP2, and HP3 for Harry Potter I, II, and III, TW for Twilight, and SW1,
-SW2, and SW3 for Star Wars episodes 1, 2, and 3) given by the users (A,B,C,D). The blank units represents unknowns, in which the user has not rated the movie. In practice, the utility matrices are mostly sparser than this matrix, since there is a small fraction of real users who give explicit feedback on items. The goal of the recommender system is to predict the value for the blanks in the utility matrix.
+SW2 and SW3 for Star Wars episodes 1, 2, and 3) given by the users (A, B, C, D). The blank units represent unknowns, in which the user has not rated the movie. In practice, the utility matrices are mostly sparser than this matrix since a small fraction of real users gives explicit feedback on items. The goal of the recommender system is to predict the value for the blanks in the utility matrix.
 
 % We should also be aware of a slightly diﬀerent goal that makes sense in
 % many applications. It is not necessary to predict every blank entry in a utility
@@ -193,7 +191,7 @@ SW2, and SW3 for Star Wars episodes 1, 2, and 3) given by the users (A,B,C,D). T
 \begin{figure*}[ht]
   \centering
   \includegraphics[width=\textwidth]{figures/utilityMatrix.png}
-  \caption{A utility matrix representing ratings of movies on a 1–5 scale. The figure is derived from chapter 9 of MMDS book~\cite{rajaraman2011mining}}
+  \caption{A utility matrix representing ratings of movies on a 1–5 scale. Figure extracted from Chapter 9 of~\cite{rajaraman2011mining}}
   \label{fig:utilityMatrix}
 \end{figure*} 
 
@@ -204,19 +202,61 @@ who do may be biased by the very fact that it comes from people willing
 to provide ratings"~\cite{rajaraman2011mining}. Another approach would be data acquisition from users interactions and behaviour. For instance, if a user
 buys a product, watches a movie, or reads an article, it represents that they 'liked' that item. For this sort of rating the only value is 1 (for getting user's response) and the unknown pairs would be 0; in this case 0 is not lower that 1, it is no rating at all.
 
+
+\subsection{Implicit and explicit feedback data}
+
+Recommender systems rely on different types of input data which are categorized as explicit feedback and implicit feedback.
+The explicit feedback which is more convenient one, includes the ratings, or any other types of inputs which the users have provided explicitly, such as the stars representing movie rating. However, explicit feedback is not always available and should be captured from investigating the behavior of user which indirectly reflect their preferences such as purchase history, browsing history, search patterns, or even mouse movements~\cite{hu2008collaborative}. The majority of the literature related to recommender systems are focused on explicit feedback, however, in many practical situations it is required to consider the implicit feedback data. 
+
+There are some unique characteristics for implicit feedback data  which prevent the direct use of algorithms that are designed for explicit feedback. First, there is no negative feedback, since the implicit data is based on user's behaviours, it is not possible to understand which items the user does not like. For example, not watching a movie does not necessarily mean that the user does not like it, it probably means that they did not know about that, or did not have access to that. In this case, the user-item pairs that there is no gathered data for, usually the vast
+majority of the data, are treated as “missing data” and will be omitted from the analysis. 
+
+Second characteristic is that implicit feedback data are noisy, meaning that the user-item interactions do necessarily mean the user's preference. For instance purchasing might be as a gift, or the user might be unhappy after using that. Third, " the numerical values of implicit feedback describe the frequency of actions, e.g., how much time the user watched a certain show,
+how frequently a user is buying a certain item, etc. A larger value is not indicating a higher preference. For example, the most loved show may be a movie that the user will watch only once, while there is a series that the user quite likes and thus is watching every week"~\cite{hu2008collaborative}. And finally, "evaluation of implicit-feedback recommender requires appropriate measures". For example, for explicit feedback, it is possible to use metrics such as mean squared error to measure success in prediction. However, for implicit feedback data, there are many factors to be considered for evaluation. "For example, if we gather data on television viewing, it is unclear how to evaluate a show that has been watched
+more than once, or how to compare two shows that are
+on at the same time, and hence cannot both be watched
+by the user".  
+\TG{you cannot include such extensive citations, rewrite this paragraph in your own words}
+
 \subsection{Content based}
-Content-based recommender systems focus on the item's properties described in its profile and then recommends a user the similar items to the ones they 'liked' before. Similarity between items will be gained by measuring the similarity between their profiles. Users also can have their profiles describing their properties.
-
-In this section we will explain item and user profiles, how to gather the information from different types of items and how exactly the content-based recommendation system works. 
-
-\subsubsection{Item profile}
+Content-based recommender systems focus on the item's properties described in its profile and then recommends a user the similar items to the ones they 'liked' before. The profile for an item or user is a set of properties or descriptions assigned to item or user. Similarity between items will be obtained by measuring the similarity between their profiles. 
 
 
+The item profile consists of item's properties, there are different classes of items and for each class of them the approach for collecting the properties is different. The first and most convenient way of obtaining features is when the features are explicitly assigned to the item. For instance, the movies usually are assigned with the number of stars indicating the level of users' preference, and other properties such as year of production, name of director and actors and the genre. Another example can be the products which usually are described by the manufacturer with relevant features. 
 
+There are other classes of items which the values of features are not immediately apparent, such as documents. Documents, articles and web pages, consist of thousands of words but do not tend to have readily available assigned information to be used to find their topic. To characterize this class of items, it is required to remove the stop words (such as 'is','they') and then compute the TF.IDF score~\cite{ramos2003using} for all remaining words, the top n words with highest scores will characterize the document.
+
+
+In content-based recommendation, there should be item profile and user profile. Item proﬁle consists of feature-value pairs and user proﬁle summarizes the preferences of the user. There would be a feature matrix with columns that are features, the values for features can be Boolean or numerical, and each row represents an item's profile as a vector of its features. The user profile should represent the preference of the user about items, which can be achieved by aggregation of the proﬁles of items which user has 'liked'. "If the utility matrix has only 1’s, then the natural aggregate is the average of the components of the vectors representing the item proﬁles for the items in which the utility
+matrix has 1 for that user. If the utility matrix is not Boolean, e.g., ratings 1–5, then we can weight the vectors representing the proﬁles of items by the utility value. It makes sense to normalize the utilities by subtracting the average value for a user. That way, we get negative weights for items with a below-average rating, and positive weights for items with above-average ratings"~\cite{rajaraman2011mining}.
+Then for estimating the degree to which a user would prefer an item, the cosine distance between the user’s and item’s vectors should be computed, the less distance represents the more chance of preference.
 
 \subsection{Collaborative filtering}
-Collaborative filtering approach for recommender systems, focuses on user-item interactions. There are three main categories of Collaborative Filtering, Memory-based, Model-based and Hybrid CF. Neighbor-based CF (kNN) and Latent semantic CF are well known techniques in Memory-based and Model-based categories respectively  [X Su 2009]. In Neighbor-based CF the goal is to identify like-minded users based on similarity of their item ratings or purchasing history, moreover, finding items that are rated similarly would be another goal in this technique [Y Koren 2007]. In Latent factor (Latent semantic CF or Factorization-based) model, the observation (rating) matrix is modeled as a product of a user factor matrix and an item factor matrix [S Girase, 2015], and the goal is to estimate the missing user-item pair value (user feedback) by calculating latent features that accurately describe the interaction between users and items [Y Koren 2011]. A popular and accurate method in latent factor model is Singular Value Decomposition (SVD), where each user and item is represented by a factor vector, and the prediction is done by computing the inner product of these vectors  [Y Koren 2008]. 
-All collaborative filtering techniques work by user actions or feedback, user feedback data is divided in two main categories, explicit feedback and implicit feedback. Explicit feedback points to capturing user preferences in a explicit and direct way, such as rating movies, which is a difficult to get approach. However, implicit feedback, refers to all recorded behaviour of user which illustrates their preference, this type of feedback can be easily available  [Nathan N. Liu 2010]. 
+Collaborative filtering is one of the most successful approaches for recommender systems which identifies new user-item associations by analyzing the relationships between users and interdependencies among items(products)~\cite{koren2009matrix}. The fundamental assumption of Collaborative Filtering is that users with similar preferences in the past are likely to have similar preferences in the future~\cite{su2009survey}. "A major appeal of collaborative filtering is that it is domain free, yet it can address data aspects that are often elusive and difficult to profile using content filtering"~\cite{koren2009matrix}. There are three main categories of Collaborative Filtering, Memory-based, Model-based and Hybrid collaborative filtering (which combines Collaborative Filtering with other techniques). 
+
+In Memory-based Collaborative Filtering algorithms the assumption is that every user is from a group of users with similar interests. Therefore prediction of preferences of a new user on a new items can be produced by identifying the neighbors of that user.
+Neighbor-based collaborative filtering (kNN) is the prevalent algorithm in this class. 
+Although memory-based Collaborative Filtering approaches are identified as easy-to-implement and highly eﬀective, they have many limitations including the fact that user-item ratings should be stored in memory, adding a new items is sophisticated, and the performance decreases when the data is sparse since the similarity values are based on common items.
+
+
+To overcome the limitations of memory-based collaborative filtering and providing better performance, the model-based collaborative filtering was investigated. Model-based collaborative filtering techniques use the pure rating data to learn/train a model which can later be used for predictions. In this class the model can be data mining or machine learning algorithms. Also, since it is not required to have data stored in memory, the prediction process can be fast and even using less data than the original. Among the possible techniques, the Latent Factor based algorithms are proven to be eﬀective to address the scalability and sparsity challenges of collaborative filtering tasks~\cite{su2009survey,la2021evaluating}.
+
+
+
+Among the techniques for latent factor models, some of the most successful ones are based on matrix factorization which aims to extract meaningful latent connections between users and items based on user-item rating patterns~\cite{koren2009matrix}. "Matrix factorization models map both users and items to a joint latent factor space of dimensionality $f$, such that user-item interactions are modeled as inner products in that space". Each item $i$ is associated with a vector of factors (features) 
+$q_{i}\in \mathbb{R}^{f}$
+which represents how much (positive or negative) this item contains those factors; similarly, each user $u$ is associated with a vector of factors(features) 
+$p_{u}\in \mathbb{R}^{f}$
+which measure the extent of interest the user has in items that are high on the corresponding factors. 
+
+
+To learn the latent factors ($p_{u}$ and $q_{i}$), more recent works suggested modeling based on the known ratings, therefore, the regularized squared error should be minimized on the set of 
+known ratings:
+\begin{equation} \tag{1}
+   \min_{q_{*},p_{*}} \sum_{(u,i) \epsilon \kappa }  (r_{ui}-q_{i}^{T}p_{u})^{^2}+\lambda \left ( \left \| q_{i}\right \|^2+\left \| p_{u}\right \|^2 \right )            \label{eq}
+\end{equation}
+where $\kappa$ is the set of user-item pairs for which $r_{ui}$, the rating of item $i$ by user $u$, is available. Unknown elements of the utility matrix are predicted by the value of $q_{i}^{\tau }p_{u}$ which represents the user’s overall interest in the item’s characteristics and is an approximation of the rated value if item $i$ by user $u$. 
+
 
 
 

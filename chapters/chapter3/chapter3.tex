@@ -1,10 +1,12 @@
-\chapter{Canadian Open Neuroscience Platform (CONP)}
+\chapter{The Canadian Open Neuroscience Platform (CONP)}
+
+\TG{I find this chapter too long, with a lot of details and screenshots that are not directly relevant to the thesis. You should summarize it. Perhaps adding 2-3 pages on CONP to the background section isn't bad after all. }
 
 \label{CONP}
 
-Previously, we explained two of popular data and tool sharing platforms, OpneNeuro and NITRC. In this chapter we explain the Canadian Open Neuroscience Platform, another tool and data sharing platform which includes all the datasets and analysis pipelines we employed in our project. The first section is about the architecture of CONP, the technologies which are used and how CONP guarantees the principles of Open Science. In the second chapter, we focused on the CONP web interface and its capabilities. 
+Previously, we explained two of popular data and tool sharing platforms, OpenNeuro and NITRC. In this chapter we explain the Canadian Open Neuroscience Platform, another tool and data sharing platform which includes all the datasets and analysis pipelines we employed in our project. The first section is about the architecture of CONP, the technologies which are used and how CONP guarantees the principles of Open Science. In the second chapter, we focused on the CONP web interface and its capabilities. 
 
-I have contributed to the technical development of CONP web platform and implemented some features, also I am a co-author in CONP paper which is submitted to Scientific Data. Therefore, some of the figures or data in this chapter is derived from either the paper or the website of CONP.
+I have contributed to the technical development of CONP web platform and implemented some features, also I am a co-author in CONP paper which is under revision at Scientific Data. Some of the figures or data in this chapter are derived from either the paper or the website of CONP.
 
 \section{Architecture of CONP}
 The Canadian Open Neuroscience Platform (CONP) provides an infrastructure for the promotion of open-science workflows and the sharing of neuroscience data. There are several open-source technologies integrated in CONP web portal to provide extensible distributed federation of datasets, unified search capabilities for data and software tools, the ability to run analyses either on High-Performance Computing (HPC) infrastructures or locally.
@@ -13,7 +15,7 @@ The Canadian Open Neuroscience Platform (CONP) provides an infrastructure for th
 \begin{figure*}
     \centering
     \includegraphics[width=\textwidth]{figures/CONP_figure.pdf}
-    \caption{Architecture of the Canadian Open Neuroscience Platform. The platform is comprised of multiple tiers including:  i) independent data infrastructure; ii) Metadata integration across tools and datasets via standard models (Biocaddie DATS, Boutiques descriptors); iii) Data analysis on High-Performance Computing and; iv) Web and command-line interfaces. (The figure is captured from CONP paper\cite{CONP})}
+    \caption{Architecture of the Canadian Open Neuroscience Platform. The platform is comprised of multiple tiers including:  i) independent data infrastructure; ii) Metadata integration across tools and datasets via standard models (Biocaddie DATS, Boutiques descriptors); iii) Data analysis on High-Performance Computing and; iv) Web and command-line interfaces. The figure is reproduced from CONP paper.}
     \label{fig:CONP_figure}
 \end{figure*}
 
@@ -23,17 +25,18 @@ Figure~\ref{fig:CONP_figure} illustrates the architecture of CONP and since we f
 CONP employes different distributed data repositories with different infrastructures, access control requirements, APIs, and licensing such as domain-agnostic datastores (OSF, Zenodo, FRDR-DFDR), specific brain imaging repositories (LORIS, XNAT, Brain-CODE), and the commonly used HTTP and FTP web protocols. Also, CONP is extensible to any repository which allows access via programmatic web-compatible interfaces.
 
 \subsection{Data integration}
+\TG{fix empty references in this paragraph}
 In the (meta)data integration layer, CONP leverages DataLad~\cite{} as a backend, GitHub~\cite{} to host the metadata, and enables uniform data search queries based on the Data Tags Suite model~\cite{}. Datalad is responsible for integration between datasets, it is a software library for managing Git repositories referencing the data through storing metadata, file URLs and hashes of data managed by git-annex. Therefore, a DataLad dataset does not contain the data themselves, the actual datasets remain stored remotely.
 
 Also there is a crawling framework developed in CONP which manages the life cycle of DataLad datasets on GitHub. Using this crawler as web platform, users are able to upload datasets to the CONP without knowledge of Datalad or the GitHub workflow used in CONP. This crawler searches for CONP-tagged datasets and whenever a new dataset is found creates a Datalad dataset for that, and updates the Datalad dataset whenever a modification is detected in a dataset, and then updates the CONP forked GitHub repository. Also generates DATS file with minimal information for a dataset whenever the dataset does not have one.
 
-CONP uses CircleCI as a dataset testing suit to periodically and continuously test if datasets are available, installable by Datalad, and if data are accessible by testing the download of a few files from the datasets. To detect possible issues, CircleCI repeats such tests every four hours for all available datasets in CONP and provides a continuous monitoring for them. Also, since CONP Datalad datasets are hosted in GitHub, the integration with CircleCi would be transparent and more feasible.
+CONP uses CircleCI as a dataset testing suite to periodically and continuously test if datasets are available, installable by Datalad, and if data are accessible by testing the download of a few files from the datasets. To detect possible issues, CircleCI repeats such tests every four hours for all available datasets in CONP and provides a continuous monitoring for them. Also, since CONP Datalad datasets are hosted in GitHub, the integration with CircleCi would be transparent and more feasible.
 
 \subsection{Analysis and tools}
-The analysis layer not only allows finding and downloading of tools, also allows directly integrating tools into workflows and their execution on High-Performance Computing (HPC) systems such as CBrain~\cite{}. All tools or pipelines available in CONP are described in Boutiques, "an open specification and software library for sharing tools according to the FAIR principles. Boutiques descriptors are JSON objects containing a specification of the tool input data, parameters, and output data. They link to a Docker or Singularity container image where the tool and all its dependencies are installed and configured for execution"~\cite{conppaper}. Tools described by boutiques  can be published, archived, and retrieved in the Zenodo and then assigned a DOI, which makes their archives permanently findable.
+The analysis layer not only allows finding and downloading of tools, also allows directly integrating tools into workflows and their execution on High-Performance Computing (HPC) systems such as CBRAIN~\cite{}. All tools or pipelines available in CONP are described in Boutiques, "an open specification and software library for sharing tools according to the FAIR principles. Boutiques descriptors are JSON objects containing a specification of the tool input data, parameters, and output data. They link to a Docker or Singularity container image where the tool and all its dependencies are installed and configured for execution"~\cite{conppaper}  \TG{Make sure that all citations in the thesis are 2 lines maximum}. Tools described by Boutiques  can be published, archived, and retrieved in the Zenodo and then assigned a DOI, which makes their archives permanently findable.
 
 \subsection{Interface}
-All the technologies and methods used in CONP are described as a web portal available at \url{http://portal.conp.ca} on which the users can search for, download and upload datasets, tools or pipelines, they are also able to lunch tools on their selected datasets using registered HPC systems such as CBrain without requiring advanced computing skills.  
+All the technologies and methods used in CONP are described as a web portal available at \url{http://portal.conp.ca} on which the users can search for, download and upload datasets, tools or pipelines, they are also able to lunch tools on their selected datasets using registered HPC systems such as CBRAIN without requiring advanced computing skills.  
 
 
  
@@ -48,7 +51,7 @@ All the technologies and methods used in CONP are described as a web portal avai
 
 \section{CONP web portal}
 
-Canadian Open Neuroscience Platform (CONP) Portal is a web interface that facilitates open science for the neuroscience researchers by making datasets and tools globally accessible and shareable, the tutorial for the CONP portal is available at \url{https://portal.conp.ca/tutorial}. we will explain key features provided by the CONP portal is explained in the following. 
+Canadian Open Neuroscience Platform (CONP) Portal is a web interface that facilitates open science for the neuroscience researchers by making datasets and tools globally accessible and shareable, the tutorial for the CONP portal is available at \url{https://portal.conp.ca/tutorial}. We will explain the key features provided by the CONP portal in the following. 
 
 \subsection{Analytics}
 A Dashboard that provides the key analytics that summarizes the  contents of the portal and introductory information, available at \url{https://portal.conp.ca/analytics}. All the data available in Analytics page will be updated automatically whenever there are updates in the number of uploaded dataset or pipeline, downloads, views and other statistics. One of the most important summarized contents in the Analytics page is about the available datasets and tool/pipelines in CONP.
@@ -61,19 +64,19 @@ A Dashboard that provides the key analytics that summarizes the  contents of the
   \end{figure*}
 
 The number of pipelines and datasets has been increased in the last three years, see Figure~\ref{fig:cumulative}. At the beginning there has been only one dataset and eight pipelines in May 2018. There has been a marked rise in the number of datasets started in the end of 2019.
-There are currently 57 datasets, as of July 2021, which are mostly neuroimaging and also transcriptomics, genomics, and other related data modalities. Most of these datasets are derived from neuroscience research institutes, a full list can be found here"~\url{https://portal.conp.ca/search}. There is usually a list of keywords and modalities assigned to each dataset which describes the category of compatibility of the dataset, Figure~\ref{fig:dataset_keyword} illustrates these keywords for the available datasets that are mostly 'brain imaging', 'human pain' and 'mri'. 
+There are currently 57 datasets, as of July 2021, which are mostly neuroimaging and also transcriptomics, genomics, and other related data modalities. Most of these datasets are derived from neuroscience research institutes, a full list can be found here"~\url{https://portal.conp.ca/search}. There is usually a list of keywords and modalities assigned to each dataset which describes the category of compatibility of the dataset, Figure~\ref{fig:dataset_keyword} illustrates these keywords for the available datasets that are mostly 'neuroimaging'. 
 
 \begin{figure*}
     \centering
-    \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{figures/Datasets Keyword Pie Chart.pdf}
-    \caption{Datasets' keywords\MM{will be pie chart}}
+    \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{figures/Datasets Keyword.pdf}
+    \caption{Datasets' keywords. There have been 74 other keywords that each one is assigned to one dataset only}
     \label{fig:dataset_keywords}
 \end{figure*}
 
 \begin{figure*}
     \centering
-    \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{figures/Pipelines Tag Pie Chart.pdf}
-    \caption{Pipelines' tags \MM{will be pie chart}}
+    \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{figures/Pipelines Tag.pdf}
+    \caption{Pipelines' tags}
     \label{fig:pipelineTags}
 \end{figure*}
 
