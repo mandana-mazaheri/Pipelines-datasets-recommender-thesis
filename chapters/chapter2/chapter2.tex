@@ -53,7 +53,7 @@ The data usually need to be integrated with other data interoperate with applica
 
 \subsubsection*{I1. (Meta)data use a formal, accessible, shared, and broadly applicable language for knowledge representation}
 
-``Interoperability typically means that each computer system at least has knowledge of the other system's data exchange formats" ~\cite{FAIR_Principles}. To make this happen, it is required to use commonly used controlled vocabularies, anthologies, and a good data model to describe and structure (meta)data.
+``Interoperability typically means that each computer system at least has knowledge of the other system's data exchange formats" ~\cite{FAIR_Principles}. To make this happen, it is required to use commonly used controlled vocabularies, ontologies, and a good data model to describe and structure (meta)data.
  
 \subsubsection*{I2. (Meta)data use vocabularies that follow FAIR principles}
 These vocabularies are used to describe datasets and need to be documented using globally unique and persistent identifiers.
@@ -95,7 +95,7 @@ OpenNeuro~\cite{markiewicz2021openneuro,gorgolewski2017openneuro}, formerly know
  OpenNeuro only accepts datasets compatible with the Brain Imaging Data Structure (BIDS)~\cite{gorgolewski2016brain}, a standard for organizing and describing MRI datasets. Also, all datasets will be validated to be BIDS compatible before being uploaded to OpenNeuro.
 %  Among BIDs compatible data formats 
 %  such as MRI, MEG, EEG, iEEG, ECoG, ASL, and PET data, also, .
- In OpenNeuro, users can specify whether their data will be accessible publicly or not; however, the user agrees that the uploaded data will be publicly accessible after 18 months. After uploading the data on OpenNeuro, the users can change the dataset, change metadata, apply versioning on the dataset or make copies of the dataset to guarantee the reputability of analysis. 
+ In OpenNeuro, users can specify whether their data will be accessible publicly or not; however, the user agrees that the uploaded data will be publicly accessible after 18 months. After uploading the data on OpenNeuro, the users can change the dataset, change metadata, apply versioning on the dataset or make copies of the dataset to guarantee the reproducibility of analysis. 
  
  The users can share their uploaded data with other colleagues or researchers and specify the level of access ranging from viewing to administration. 
 
@@ -188,7 +188,6 @@ All the technologies and methods used in CONP are described as a web portal~\cit
 
 Through the analytics available on web interface of CONP, we can see a summary of available contents. As represented in Figure~\ref{fig:cumulative}, the number of pipelines and datasets has been increased in the last three years. There are currently 57 datasets in CONP, as of July 2021. Each dataset is usually assigned a list of keywords and modalities which describes the category of compatibility of the dataset, Figure~\ref{fig:dataset_keywords} illustrates that most of the datasets in CONP are `neuroimaging'.
 
-\TG{font size in figs 4 and 5 is too big}
 
 \begin{figure*}[ht]
   \centering
@@ -320,5 +319,10 @@ known ratings:
 where $\kappa$ is the set of user-item pairs for which $r_{ui}$, the rating of item $i$ by user $u$, is available. Unknown elements of the utility matrix are predicted by the value of $q_{i}^{\tau }p_{u}$ which represents the user’s overall interest in the item’s characteristics and is an approximation of the rated value if item $i$ by user $u$. 
 
 
+\subsection{Content-based and Collaborative Filtering in our context}
 
+As mentioned before, we aim at recommending the compatible datasets and analysis pipelines available in CONP. To have a content-based recommender approach we should focus of ....
 
+Also there is concept as "automated metadata generation" which works as... however currently this is not implemented for the pipeline/datasets in CONP and would be a much large and complicated for us to implement in a master project....
+
+Therefore we focused on Collaborative filtering which would be .....
