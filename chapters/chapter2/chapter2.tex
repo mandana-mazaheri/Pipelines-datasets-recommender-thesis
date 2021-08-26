@@ -319,10 +319,9 @@ known ratings:
 where $\kappa$ is the set of user-item pairs for which $r_{ui}$, the rating of item $i$ by user $u$, is available. Unknown elements of the utility matrix are predicted by the value of $q_{i}^{\tau }p_{u}$ which represents the user’s overall interest in the item’s characteristics and is an approximation of the rated value if item $i$ by user $u$. 
 
 
-\subsection{Content-based and Collaborative Filtering in our context}
+\subsection{Evaluation of Recommender systems}
 
-As mentioned before, we aim at recommending the compatible datasets and analysis pipelines available in CONP. To have a content-based recommender approach we should focus of ....
+To evaluate the result of the recommender engines, there are two classes of metrics, statistical and decision support accuracy metrics~\cite{sarwar2001item}.  In statistical accuracy metrics, the predicted rating will be compared directly with the actual user ratings. Mean Absolute Error (MAE), Root Mean Square Error (RMSE) and Correlation are usually used as statistical accuracy metrics~\cite{isinkaye2015recommendation}, also precision at k (prec@k) "which counts the number of relevant items in the top-k positions of a
+ranked list" is included in this class of evaluation~\cite{liu2015transductive,kar2015surrogate}.
 
-Also there is concept as "automated metadata generation" which works as... however currently this is not implemented for the pipeline/datasets in CONP and would be a much large and complicated for us to implement in a master project....
-
-Therefore we focused on Collaborative filtering which would be .....
+However, the decision support accuracy metrics distinguish good items from those items that are not good, like a binary operation. The popular measurements in decision support include Receiver Operating Characteristics (ROC) and Precision-Recall Curve (PRC), Precision, Recall and F-measure. We focussed on Receiver Operating Characteristics (ROC) since we had a utility matrix of binary values and needed to classify the predictions to fail or succeed.

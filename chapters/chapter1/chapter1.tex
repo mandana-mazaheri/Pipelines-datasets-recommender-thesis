@@ -52,16 +52,28 @@ The data itself is not enough in neuroscience research studies; there are a set 
 Although there are many platforms for data and tool sharing in neuroscience, it is still required to have a system to help users bridge the datasets and tools together when they conduct an analysis. In the best scenario, the users can see the outcome of analysis applied on data in current platforms. However, providing a list of possible tools/pipelines for a data/dataset will facilitate the user's analysis process and prevent the confusing and time-consuming process of selecting an appropriate tool/pipeline for the candidate data/dataset. The same scenario would be helpful when the user needs to select data/dataset to execute a candidate tool/pipeline.
 
 %As mentioned before, 
-\MM{Make it clearer that we have a dataset and we want to have a list of compatible pipelines, and the other way around.}
-The aim of this thesis is to investigate the feasibility of implementing a recommender system to recommend the compatible tools/pipelines and data/datasets given the other based on the available records from previous executions. Meaning that, for a given dataset, we would provide a list of compatible pipelines which are supposed to end in successful execution process. Conversely, for a given pipeline a set of compatible datasets would be provided.%end of this comment
+
+The aim of this thesis is to investigate the feasibility of implementing a recommender system to identify the compatible tools/pipelines and data/datasets based on the available records from previous executions. Meaning that, for a given dataset, we would provide a list of compatible pipelines which are supposed to end in successful execution process. Conversely, for a given pipeline a set of compatible datasets would be provided. 
+
+There is also a field of research called ``dataset search"~\cite{chapman2020dataset} which provides recommender systems or search engines to find the most related datasets based on the searched key-words. These systems are mostly based on semantic analysis, however, we focus of compatibility of datasets with the given neuroimaging pipelines which also depend on more low level syntactical and infrastructural details.
+
+
+Dataset search is largely keyword-based over published metadata 
+
 Consistently with our motivating use case, we focused on the available neuroscience tools/pipelines and data/datasets (from now on `pipeline' and `dataset') in the Canadian Open Neuroscience Platform (CONP) available at \url{https://portal.conp.ca/index}. The pipelines in CONP are described in Boutiques~\cite{glatard2018boutiques} which is a software library for sharing tools according to the FAIR principles. CONP has distributed datasets in neuroimaging, transcriptomics, genomics, and other related data modalities. More details about the CONP and its available pipelines and the dataset are provided in Chapter 2.
 
 
 
 Recommender systems are widely used and increasingly successful in satisfying the users by suggesting the items they might like and helping them select the better choices faster. There have been many successful works on recommender systems such as Netflix~\cite{bennett2007netflix} for movie recommender and Amazon~\cite{7927889} as product recommenders. There are two main strategies for recommender systems. The first one is Collaborative Filtering~\cite{rajaraman2011mining} which proposes recommendations based on the user-item interactions, recommending an item to a user if similar users like it. The other approach is Content-based Filtering~\cite{pazzani2007content} which recommends a user items that are similar to their previous choices.  
 
-We focused on collaborative filtering for our project to recommend neuroimaging data/datasets and tools/pipelines given the other. In this case, we have a database of the previously executed pipeline-dataset pairs and apply a collaborative filtering model to get the recommended items. We did not select a content-based approach for the recommender system since, in this case, there should be accurate and comprehensive descriptions for all datasets and pipelines.
+It is important to note that the goal of our recommender system is to identify the compatible datasets and pipelines, which is slightly different from the classical use of recommender systems which recommend the most relevant item to a user. This is a restriction of the general concept of recommender system that would adjust to the users' preferences. The ultimate goal of this project is to reach that broad recommender system and consider much more detailed information. However, in this first study we will focus on compatibility that would be a first step toward helping users in their neuroimaging analysis process.
+
+
+We focused on collaborative filtering for our project to recommend neuroimaging data/datasets and tools/pipelines given the other. In this case, we have a database of the previously executed pipeline-dataset pairs and apply a collaborative filtering model to get the recommended items. We did not select a content-based approach for the recommender system since, in this case, there should be accurate and comprehensive descriptions for all datasets and pipelines. 
  
+
+The descriptions for datasets and analysis pipelines are supposed to be available through their metadata which in many cases are generated manually. Some automated approaches exists to generate metadata~\cite{liddy2002automatic} for the documents and some types of resources in studies .However, to the best of our knowledge, in neuroscience, such automated metadata techniques have not been applied  widely, although it would be an interesting topic to explore in another research.
+
 
 % what will be in this thesis?
 
